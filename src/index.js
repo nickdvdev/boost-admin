@@ -1,28 +1,28 @@
 require('dotenv').config();
+const helpers = require('helpers.js')
 const markup = require('telegraf/markup') 
 const { Telegraf } = require('telegraf')
-console.log('Bot has been started...')
-const bot = new Telegraf(process.env.BOT_TOKEN);
+const bot = new Telegraf(process.env.BOT_TOKEN)
+bot.launch()
+helpers.logStart()
 //======================================================
 
-bot.start((ctx) => ctx.reply('Welcome'))
-bot.help((ctx) => ctx.reply('Send me a sticker'))
-bot.on('sticker', (ctx) => ctx.reply('👍'))
-bot.hears('hi', (ctx) => ctx.reply('Hey there'))
-bot.launch()
-
-bot.command('stat', (ctx) => {
-  console.log(ctx.chat.id)
-  if (ctx.chat.id === ADMIN_CHAT) {
-    ctx.reply('@TGstat @cheapeloboost')
-    ctx.reply('@TGstat @esprtnews')
-  }
+bot.on('new_chat_members', (ctx) => {
+  const newMemberText = `Добавился в чат Заказы
+===================
+USER INFO
+Имя: ${ctx.from.first_name}
+Username: @${ctx.from.username}
+Язык: ${ctx.from.language_code}`
+  bot.sendMessage(ADMIN_CHAT, newMemberText, ctx)
 })
 
-// const bot = new Telegraf(process.env.BOT_TOKEN)
-// bot.command('oldschool', (ctx) => ctx.reply('Hello'))
-// bot.command('modern', ({ reply }) => reply('Yo'))
-// bot.command('hipster', Telegraf.reply('λ'))
-// bot.launch()
-
-bot.on('new_chat_members', (ctx) => {})
+bot.on('left_chat_member', (ctx) => {
+  const newMemberText = `Ушел из чата Заказы
+===================
+USER INFO
+Имя: ${helpers.getName(ctx)}
+Username: @${ctx.from.username}
+Язык: ${ctx.from.language_code}`
+  bot.sendMessage(ADMIN_CHAT, newMemberText, ctx)
+})
