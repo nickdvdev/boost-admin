@@ -40,7 +40,7 @@ Username: @${user.username}
 })
 
 bot.on('left_chat_member', (ctx) => {
-  const [user] = ctx.message.new_chat_members
+  const [user] = ctx.message.left_chat_member
   const newMemberText = `Ушел из чата Заказы
 ===================
 USER INFO
