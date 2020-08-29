@@ -10,11 +10,11 @@
   },
   "author": "Nick Dmitrienko",
   "license": "ISC",
-  "devDependencies": {
-    "nodemon": "^2.0.4"
-  },
   "dependencies": {
     "dotenv": "^8.2.0",
     "telegraf": "^3.38.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }
