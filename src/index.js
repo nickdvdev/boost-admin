@@ -27,34 +27,27 @@ helpers.logStart()
 
 
 bot.on('new_chat_members', (ctx) => {
-//   const newMemberText = `Пришел в чат Заказы
-// ===================
-// USER INFO
-// Имя: ${ctx.from.first_name}
-// Username: @${ctx.from.username}
-// Язык: ${ctx.from.language_code}`
-    telegram.sendMessage(myChat, ctx.message.new_chat_members)
+  const [user] = ctx.message.new_chat_members
+  const newMemberText = `Пришел в чат Заказы
+===================
+USER INFO
+Имя: ${user.first_name}
+Username: @${user.username}
+Язык: ${user.language_code}
+БОТ: ${user.is_bot}`
+    telegram.sendMessage(adminsChat, ctx.message.new_chat_members)
   return
 })
 
-// bot.on('left_chat_member', (ctx) => {
-//   const newMemberText = `Ушел из чата Заказы
-// ===================
-// USER INFO
-// Имя: ${ctx.from.first_name}
-// Username: @${ctx.from.username}
-// Язык: ${ctx.from.language_code}`
-//   telegram.sendMessage(adminsChat, newMemberText)
-//   return
-// })
-
-// bot.hears('getCtx', ctx => {
-//   ctx.reply(ctx.from)
-//   const newMemberText = `Ушел из чата Заказы
-//   ===================
-//   USER INFO
-//   Имя: ${ctx.from.first_name}
-//   Username: @${ctx.from.username}
-//   Язык: ${ctx.from.language_code}`
-//   ctx.reply(newMemberText)
-// })
+bot.on('left_chat_member', (ctx) => {
+  const [user] = ctx.message.new_chat_members
+  const newMemberText = `Ушел из чата Заказы
+===================
+USER INFO
+Имя: ${user.first_name}
+Username: @${user.username}
+Язык: ${user.language_code}
+БОТ: ${user.is_bot}`
+  telegram.sendMessage(adminsChat, newMemberText)
+  return
+})
