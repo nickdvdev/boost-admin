@@ -46,3 +46,14 @@ Username: @${ctx.from.username}
   telegram.sendMessage(adminsChat, newMemberText)
   return
 })
+
+bot.hears('getCtx', ctx => {
+  ctx.reply(ctx.from)
+  const newMemberText = `Ушел из чата Заказы
+  ===================
+  USER INFO
+  Имя: ${ctx.from.first_name}
+  Username: @${ctx.from.username}
+  Язык: ${ctx.from.language_code}`
+  ctx.reply(newMemberText)
+})
