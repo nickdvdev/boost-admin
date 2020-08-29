@@ -1,5 +1,5 @@
 require('dotenv').config();
-const helpers = require('helpers.js')
+const helpers = require('./helpers')
 const markup = require('telegraf/markup') 
 const { Telegraf } = require('telegraf')
 const bot = new Telegraf(process.env.BOT_TOKEN)
