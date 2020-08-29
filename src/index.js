@@ -35,7 +35,7 @@ USER INFO
 Username: @${user.username}
 Язык: ${user.language_code}
 БОТ: ${user.is_bot}`
-    telegram.sendMessage(adminsChat, ctx.message.new_chat_members)
+    telegram.sendMessage(adminsChat, newMemberText)
   return
 })
 
