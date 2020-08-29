@@ -39,15 +39,15 @@ Username: @${user.username}
   return
 })
 
-bot.on('left_chat_member', (ctx) => {
-  const [user] = ctx.message.left_chat_member
-  const newMemberText = `Ушел из чата Заказы
-===================
-USER INFO
-Имя: ${user.first_name}
-Username: @${user.username}
-Язык: ${user.language_code}
-БОТ: ${user.is_bot}`
-  telegram.sendMessage(adminsChat, newMemberText)
-  return
-})
+// bot.on('left_chat_member', (ctx) => {
+//   const [user] = ctx.message.left_chat_member
+//   const newMemberText = `Ушел из чата Заказы
+// ===================
+// USER INFO
+// Имя: ${user.first_name}
+// Username: @${user.username}
+// Язык: ${user.language_code}
+// БОТ: ${user.is_bot}`
+//   telegram.sendMessage(adminsChat, newMemberText)
+//   return
+// })
