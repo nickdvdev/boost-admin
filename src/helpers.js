@@ -8,9 +8,9 @@ module.exports = {
   getChatId(ctx) {
     return ctx.chat.id;
   },
-  getName(ctx) {
-    const firstName = ctx.from.first_name || '';
-    const lastName = ctx.from.last_name || '';
+  getName(user) {
+    const firstName = user.first_name || '';
+    const lastName = user.last_name || '';
     return [firstName, lastName].join(' ');
   },
   makeNewMembers(ctx) {
@@ -19,7 +19,7 @@ module.exports = {
   },
   makeUserMessage(user) {
     return `===================
-Имя: ${user.first_name}
+Имя: ${this.getName(user)}
 Username: @${user.username}
 Язык: ${user.language_code}
 БОТ: ${user.is_bot}`
