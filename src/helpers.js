@@ -12,5 +12,11 @@ module.exports = {
     const firstName = ctx.from.first_name || '';
     const lastName = ctx.from.last_name || '';
     return [firstName, lastName].join(' ');
+  },
+  displayNewMembers(ctx) {
+    const members = ctx.message.new_chat_members
+    members.forEach(member => {
+      
+    });
   }
 };
