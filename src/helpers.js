@@ -13,10 +13,15 @@ module.exports = {
     const lastName = ctx.from.last_name || '';
     return [firstName, lastName].join(' ');
   },
-  displayNewMembers(ctx) {
+  makeNewMembers(ctx) {
     const members = ctx.message.new_chat_members
-    members.forEach(member => {
-      
-    });
+    return members.map((member, i) => `${i + 1}. ${this.makeUserMessage(member)}`);
+  },
+  makeUserMessage(user) {
+    return `===================
+Имя: ${user.first_name}
+Username: @${user.username}
+Язык: ${user.language_code}
+БОТ: ${user.is_bot}`
   }
 };
