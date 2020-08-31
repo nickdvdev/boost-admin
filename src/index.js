@@ -32,7 +32,7 @@ bot.on('left_chat_member', (ctx) => {
 bot.on('message', (ctx) => {
   if (ctx.message.chat.id === ordersChat) {
     if (ctx.message.text !== '+'){
-      ctx.deleteMessage(ordersChat, ctx.message.message_id)
+      telegram.deleteMessage(ordersChat, ctx.message.message_id)
     }
   }
 })
