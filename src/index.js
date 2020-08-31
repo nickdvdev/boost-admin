@@ -28,3 +28,11 @@ bot.on('left_chat_member', (ctx) => {
     telegram.sendMessage(adminsChat, leftMemberText)
   }
 })
+
+bot.on('text', (ctx) => {
+  if (ctx.message.chat.id === ordersChat) {
+    if (ctx.message.text !== '+'){
+      ctx.deleteMessage(ordersChat, ctx.message.message_id)
+    }
+  }
+})
