@@ -13,6 +13,11 @@ bot.launch()
 helpers.logStart()
 //======================================================
 
+bot.command('docs', (ctx) => {
+  if (ctx.message.chat.id === adminsChat) {
+      ctx.reply(docsLink)
+  }
+})
 
 bot.on('new_chat_members', (ctx) => {
   if (ctx.message.chat.id === ordersChat) {
@@ -37,11 +42,5 @@ bot.on('message', (ctx) => {
     if (ctx.message.text !== '+'){
       telegram.deleteMessage(ordersChat, ctx.message.message_id)
     }
-  }
-})
-
-bot.command('docs', (ctx) => {
-  if (ctx.message.chat.id === adminsChat) {
-      ctx.reply(docsLink)
   }
 })
