@@ -8,6 +8,7 @@ const bot = new Telegraf(process.env.BOT_TOKEN)
 const adminsChat = Number(process.env.ADMINS_CHAT)
 const ordersChat = Number(process.env.ORDERS_CHAT)
 const myChat = Number(process.env.MY_CHAT)
+const docsLink = process.env.DOCS_LINK
 bot.launch()
 helpers.logStart()
 //======================================================
@@ -18,6 +19,8 @@ bot.on('new_chat_members', (ctx) => {
     const users = helpers.makeNewMembers(ctx)
     const newMemberText = `Пришли в чат «Заказы»:`
     telegram.sendMessage(adminsChat, `${newMemberText}\n${users.join('\n')}`)
+    telegram.sendMessage(myChat, ctx.chat.id)
+    telegram.deleteMessage(myChat, ctx.chat.id)
   }
 })
 
@@ -34,5 +37,11 @@ bot.on('message', (ctx) => {
     if (ctx.message.text !== '+'){
       telegram.deleteMessage(ordersChat, ctx.message.message_id)
     }
+  }
+})
+
+bot.command('docs', (ctx) => {
+  if (ctx.message.chat.id === adminsChat) {
+      telegram.deleteMessage(ordersChat, docsLink)
   }
 })
