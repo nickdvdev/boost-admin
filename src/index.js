@@ -24,8 +24,7 @@ bot.on('new_chat_members', (ctx) => {
     const users = helpers.makeNewMembers(ctx)
     const newMemberText = `Пришли в чат «Заказы»:`
     telegram.sendMessage(adminsChat, `${newMemberText}\n${users.join('\n')}`)
-    telegram.sendMessage(myChat, ctx.message)
-    telegram.deleteMessage(ordersChat, ctx.message)
+    telegram.deleteMessage(ordersChat, ctx.message.message_id)
   }
 })
 
@@ -34,8 +33,7 @@ bot.on('left_chat_member', (ctx) => {
     const user = ctx.message.left_chat_member
     const leftMemberText = `Ушел из чата «Заказы»\n${helpers.makeUserMessage(user)}`
     telegram.sendMessage(adminsChat, leftMemberText)
-    telegram.sendMessage(myChat, ctx.message)
-    telegram.deleteMessage(ordersChat, ctx.message)
+    telegram.deleteMessage(ordersChat, ctx.message.message_id)
   }
 })
 
