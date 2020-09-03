@@ -42,6 +42,6 @@ bot.on('message', (ctx) => {
 
 bot.command('docs', (ctx) => {
   if (ctx.message.chat.id === adminsChat) {
-      telegram.sendMessage(adminsChat, docsLink)
+      ctx.reply(docsLink)
   }
 })
