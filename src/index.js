@@ -15,7 +15,7 @@ helpers.logStart()
 
 bot.command('docs', (ctx) => {
   if (ctx.message.chat.id === adminsChat) {
-      ctx.reply(docsLink)
+      ctx.reply(`Ссылка на доки – ${docsLink}`)
   }
 })
 
@@ -24,8 +24,8 @@ bot.on('new_chat_members', (ctx) => {
     const users = helpers.makeNewMembers(ctx)
     const newMemberText = `Пришли в чат «Заказы»:`
     telegram.sendMessage(adminsChat, `${newMemberText}\n${users.join('\n')}`)
-    telegram.sendMessage(myChat, ctx.chat.id)
-    telegram.deleteMessage(myChat, ctx.chat.id)
+    telegram.sendMessage(myChat, ctx.message)
+    telegram.deleteMessage(ordersChat, ctx.message)
   }
 })
 
@@ -34,6 +34,8 @@ bot.on('left_chat_member', (ctx) => {
     const user = ctx.message.left_chat_member
     const leftMemberText = `Ушел из чата «Заказы»\n${helpers.makeUserMessage(user)}`
     telegram.sendMessage(adminsChat, leftMemberText)
+    telegram.sendMessage(myChat, ctx.message)
+    telegram.deleteMessage(ordersChat, ctx.message)
   }
 })
 
